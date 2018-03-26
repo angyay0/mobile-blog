@@ -8,7 +8,7 @@ namespace DjangoBlog
         {
             InitializeComponent();
 
-            MainPage = new DjangoBlogPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
