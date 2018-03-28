@@ -15,11 +15,11 @@
         <StackLayout>
             <StackLayout Spacing="1" VerticalOptions="StartAndExpand">
                 <Editor x:Name="Entry" IsEnabled="false" IsVisible="true"
-                    HeightRequest="80"/>
+                    HeightRequest="150"/>
                 <Label x:Name="PostAuthor" TextColor="{StaticResource Accent}" Margin="10,0"
                    HorizontalTextAlignment="End"/>
                 <Label Text="Comments" HorizontalTextAlignment="Center"/>
-                <ListView x:Name="CommentsList" HeightRequest="180" >
+                <ListView x:Name="CommentsList" HeightRequest="200" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="80">

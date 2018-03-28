@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:DjangoBlog.Helper.Behaviors"
     x:Class="DjangoBlog.Views.SignupPage"
     Title="Sign up">
 
@@ -17,19 +18,23 @@
                 <ActivityIndicator x:Name="actIndicator" Color="{StaticResource Accent}"  
                         IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
                 <StackLayout Spacing="2">
-                    <Label Text="Name" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
+                    <Label Text="Name" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
                     <Entry Placeholder="John" Margin="36,0" Keyboard="Email"/>
                 </StackLayout>
                 <StackLayout Spacing="2">
-                    <Label Text="Last Name" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
+                    <Label Text="Last Name" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
                     <Entry Placeholder="Smith" Margin="36,0" Keyboard="Email"/>
                 </StackLayout>
                 <StackLayout Spacing="2">
-                    <Label Text="Email" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
-                    <Entry Placeholder="user@emailregistered.com" Margin="36,0" Keyboard="Email"/>
+                    <Label Text="Email" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
+                    <Entry Placeholder="user@emailregistered.com" Margin="36,0" Keyboard="Email">
+                        <Entry.Behaviors>
+                            <behavior:EmailValidationBehavior />
+                        </Entry.Behaviors>
+                    </Entry>
                 </StackLayout>
                 <StackLayout Spacing="2">
-                    <Label Text="Password" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
+                    <Label Text="Password" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
                     <Entry Placeholder="******" Margin="36,0" IsPassword="true" />
                 </StackLayout>
                 <Grid ColumnSpacing="10">
