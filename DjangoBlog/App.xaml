@@ -1,6 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DjangoBlog.App">
     <Application.Resources>
-        <!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <!-- Colors Definition -->
+            <Color x:Key="Accent">#7C4DFF</Color>
+            <Color x:Key="Primary">#009688</Color>
+            <Color x:Key="PrimaryDark">#00796B</Color>
+            <Color x:Key="PrimaryLight">#B2DFDB</Color>
+            <Color x:Key="PTextColor">#212121</Color>
+            <Color x:Key="TTextColor">#FFFFFF</Color>
+            <Color x:Key="Divider">#BDBDBD</Color>
+            <Color x:Key="BGColor">#FAFAFA</Color>
+            
+            <!-- Global Style Definition -->
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="BarTextColor" Value="{StaticResource TTextColor}"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PTextColor}"/>
+            </Style>
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource BGColor}"/>
+            </Style> 
+            
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

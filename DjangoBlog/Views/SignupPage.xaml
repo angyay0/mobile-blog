@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DjangoBlog.Views.SignupPage"
+    Title="Sign up">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+            Android="16,16,16,16"
+            iOS="0,16,0,16" />
+    </ContentPage.Padding>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="15">
+                <Label Text="Fill with your information" FontSize="22" HorizontalTextAlignment="Center"/>
+                <ActivityIndicator x:Name="actIndicator" Color="{StaticResource Accent}"  
+                        IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+                <StackLayout Spacing="2">
+                    <Label Text="Name" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
+                    <Entry Placeholder="John" Margin="36,0" Keyboard="Email"/>
+                </StackLayout>
+                <StackLayout Spacing="2">
+                    <Label Text="Last Name" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
+                    <Entry Placeholder="Smith" Margin="36,0" Keyboard="Email"/>
+                </StackLayout>
+                <StackLayout Spacing="2">
+                    <Label Text="Email" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
+                    <Entry Placeholder="user@emailregistered.com" Margin="36,0" Keyboard="Email"/>
+                </StackLayout>
+                <StackLayout Spacing="2">
+                    <Label Text="Password" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
+                    <Entry Placeholder="******" Margin="36,0" IsPassword="true" />
+                </StackLayout>
+                <Grid ColumnSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Clicked="OnSignupClicked" Text="Signup" Grid.Row="0" Grid.Column="1" Margin="30,0" 
+                        BackgroundColor="{StaticResource Primary}" TextColor="{StaticResource TTextColor}"/>
+                    <Button Clicked="OnCancelClicked" Text="Cancel" Grid.Row="0" Grid.Column="0" Margin="30,0"
+                        BackgroundColor="{StaticResource TTextColor}" TextColor="{StaticResource Primary}"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

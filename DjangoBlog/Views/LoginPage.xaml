@@ -1,5 +1,43 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DjangoBlog.Views.LoginPage">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DjangoBlog.Views.LoginPage"
+    NavigationPage.HasNavigationBar="false"
+    Title="Back">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+            Android="16,16,16,16"
+            iOS="0,16,0,16" />
+    </ContentPage.Padding>
+    
     <ContentPage.Content>
+        <StackLayout Spacing="10">
+            <BoxView HeightRequest="60"/><!-- This is only a Spacer -->
+            <Label Text="Django Blog Xamarin" FontSize="28" HorizontalTextAlignment="Center"/>
+            <ScrollView VerticalOptions="CenterAndExpand">
+                <StackLayout Spacing="15">
+                    <ActivityIndicator x:Name="actIndicator" Color="{StaticResource Accent}"  
+                            IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
+                    <StackLayout Spacing="2">
+                        <Label Text="User" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
+                        <Entry Placeholder="user@emailregistered.com" Margin="36,0" Keyboard="Email"/>
+                    </StackLayout>
+                    <StackLayout Spacing="2">
+                        <Label Text="Password" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Center"/>
+                        <Entry Placeholder="******" Margin="36,0" IsPassword="true" />
+                    </StackLayout>
+                    <Button Clicked="OnLoginClicked" Text="Login" Margin="50,10,50,0" BackgroundColor="{StaticResource Primary}"
+                            TextColor="{StaticResource TTextColor}"/>
+                    <Label Text="Create your account" TextColor="{StaticResource Primary}" HorizontalTextAlignment="Center"
+                           Margin="0,20,0,0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnSignupClicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>

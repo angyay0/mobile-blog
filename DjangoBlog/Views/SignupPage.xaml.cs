@@ -1,25 +1,25 @@
 ﻿using System;
 using System.ComponentModel;
+
 using Xamarin.Forms;
 
 namespace DjangoBlog.Views
 {
-    public partial class LoginPage : ContentPage, INotifyPropertyChanged
+    public partial class SignupPage : ContentPage, INotifyPropertyChanged
     {
-        public LoginPage()
+        public SignupPage()
         {
             InitializeComponent();
-            InitializeBinding();
         }
 
-        void OnLoginClicked(object sender, EventArgs e)
+        void OnSignupClicked(object sender, EventArgs eventArgs)
         {
-            Navigation.PushAsync(new HomePage());
+            
         }
 
-        void OnSignupClicked(object sender, EventArgs e)
+        void OnCancelClicked(object sender, EventArgs eventArgs)
         {
-            Navigation.PushAsync(new SignupPage());
+
         }
 
         #region Activity Indicator Binding
@@ -43,7 +43,7 @@ namespace DjangoBlog.Views
                 RaisePropertyChanged("IsLoading");
             }
         }
-
+      
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void RaisePropertyChanged(string propName)

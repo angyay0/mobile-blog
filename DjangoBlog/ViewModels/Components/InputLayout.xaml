@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     x:Class="DjangoBlog.ViewModels.Components.InputLayout">
+    <ContentView.Content>
+        <Grid Margin="10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Entry Placeholder="Write a Comment" Grid.Row="0" Grid.Column="0" />
+            <Image Source="send.png" Grid.Row="0" Grid.Column="1" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnSendClicked" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

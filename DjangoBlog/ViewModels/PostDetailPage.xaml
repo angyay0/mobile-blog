@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:component="clr-namespace:DjangoBlog.ViewModels.Components"
+    x:Class="DjangoBlog.ViewModels.PostDetailPage">
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+            Android="16,16,16,16"
+            iOS="0,16,0,16" />
+    </ContentPage.Padding>
+    
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <StackLayout Spacing="1" VerticalOptions="StartAndExpand">
+                <Editor x:Name="Entry" IsEnabled="false" IsVisible="true"
+                    HeightRequest="80"/>
+                <Label x:Name="PostAuthor" TextColor="{StaticResource Accent}" Margin="10,0"
+                   HorizontalTextAlignment="End"/>
+                <Label Text="Comments" HorizontalTextAlignment="Center"/>
+                <ListView x:Name="CommentsList" HeightRequest="180" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="80">
+                            <Grid RowSpacing="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label TextColor="{StaticResource Primary}" Text="{Binding comment}" Margin="10,0"
+                                       Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                                <Label TextColor="{StaticResource Accent}" Text="{Binding author}" Margin="10,0"
+                                       Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="End"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </StackLayout>
+            <component:InputLayout x:Name="InputLayout" VerticalOptions="End" />
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
