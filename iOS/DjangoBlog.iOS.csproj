@@ -125,6 +125,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\detail.png" />
     <BundleResource Include="Resources\send.png" />
+    <BundleResource Include="Resources\add.png" />
   </ItemGroup>
   <Import Project="..\DjangoBlog\DjangoBlog.projitems" Label="Shared" Condition="Exists('..\DjangoBlog\DjangoBlog.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

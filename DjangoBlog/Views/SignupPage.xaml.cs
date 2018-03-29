@@ -16,7 +16,48 @@ namespace DjangoBlog.Views
 
         void OnSignupClicked(object sender, EventArgs eventArgs)
         {
-            
+            string email = EmailEntry.Text;
+            string name = NameEntry.Text;
+            string last = LastEntry.Text;
+            string pass = PassEntry.Text;
+
+            //Just Simply Validate that arent empty strings
+            if (!string.IsNullOrEmpty(name))
+            {
+                if (!string.IsNullOrEmpty(last))
+                {
+                    if (!string.IsNullOrEmpty(email))
+                    {
+                        if (!string.IsNullOrEmpty(pass))
+                        {
+                            IsLoading = true;
+                            SignupRequest(new SignupRequest
+                            {
+                                name = name,
+                                last = last,
+                                email = email,
+                                password = pass
+                            });
+                        }
+                        else
+                        {
+                            DisplayAlert("Information", "Password cannot be empty", "Ok");
+                        }
+                    }
+                    else
+                    {
+                        DisplayAlert("Information", "Email cannot be empty", "Ok");
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Information", "Last Name cannot be empty", "Ok");
+                }
+            }
+            else
+            {
+                DisplayAlert("Information", "Name cannot be empty", "Ok");
+            }
         }
 
         void OnCancelClicked(object sender, EventArgs eventArgs)
@@ -26,7 +67,6 @@ namespace DjangoBlog.Views
 
         async Task SignupRequest(SignupRequest request)
         {
-            IsLoading = true;
             var datasource = DjangoAPI.Instance();
             var result = await datasource.SignupRequest(request);
             Device.BeginInvokeOnMainThread(() =>
@@ -35,6 +75,7 @@ namespace DjangoBlog.Views
                 if (result != null && result.code == 0)
                 {
                     DisplayAlert("Information", "Signup proccess completed. Please login with your credentials", "Ok");
+                    Navigation.PopAsync();
                 }
                 else
                 {

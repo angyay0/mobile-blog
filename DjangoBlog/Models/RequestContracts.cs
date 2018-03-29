@@ -6,7 +6,7 @@ namespace DjangoBlog.Models.RequestContracts
         public int dev_id { get; set; }
         public string user { get; set; }
         public string password { get; set; }
-        public string dev_dec { get; set; }
+        public string dev_desc { get; set; }
     }
 
     public class SignupRequest

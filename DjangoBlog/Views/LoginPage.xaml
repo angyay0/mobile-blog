@@ -18,11 +18,11 @@
             <Label Text="Django Blog Xamarin" FontSize="28" HorizontalTextAlignment="Center"/>
             <ScrollView VerticalOptions="CenterAndExpand">
                 <StackLayout Spacing="15">
-                    <ActivityIndicator x:Name="actIndicator" Color="{StaticResource Accent}"  
+                    <ActivityIndicator x:Name="actIndicator" Color="{StaticResource Primary}"  
                             IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
                     <StackLayout Spacing="2">
                         <Label Text="User" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
-                        <Entry Placeholder="user@emailregistered.com" Margin="36,0" Keyboard="Email">
+                        <Entry x:Name="UserEntry" Placeholder="user@emailregistered.com" Margin="36,0" Keyboard="Email">
                             <Entry.Behaviors>
                                 <behavior:EmailValidationBehavior />
                             </Entry.Behaviors>
@@ -30,7 +30,7 @@
                     </StackLayout>
                     <StackLayout Spacing="2">
                         <Label Text="Password" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
-                        <Entry Placeholder="******" Margin="36,0" IsPassword="true" />
+                        <Entry x:Name="PassEntry" Placeholder="******" Margin="36,0" IsPassword="true" />
                     </StackLayout>
                     <Button Clicked="OnLoginClicked" Text="Login" Margin="50,10,50,0" BackgroundColor="{StaticResource Primary}"
                             TextColor="{StaticResource TTextColor}"/>

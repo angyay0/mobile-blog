@@ -15,19 +15,19 @@
         <ScrollView>
             <StackLayout Spacing="15">
                 <Label Text="Fill with your information" FontSize="22" HorizontalTextAlignment="Center"/>
-                <ActivityIndicator x:Name="actIndicator" Color="{StaticResource Accent}"  
+                <ActivityIndicator x:Name="actIndicator" Color="{StaticResource Primary}"  
                         IsRunning="{Binding IsLoading}" IsVisible="{Binding IsLoading}" />
                 <StackLayout Spacing="2">
                     <Label Text="Name" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
-                    <Entry Placeholder="John" Margin="36,0" Keyboard="Email"/>
+                    <Entry x:Name="NameEntry" Placeholder="John" Margin="36,0" Keyboard="Email"/>
                 </StackLayout>
                 <StackLayout Spacing="2">
                     <Label Text="Last Name" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
-                    <Entry Placeholder="Smith" Margin="36,0" Keyboard="Email"/>
+                    <Entry x:Name="LastEntry" Placeholder="Smith" Margin="36,0" Keyboard="Email"/>
                 </StackLayout>
                 <StackLayout Spacing="2">
                     <Label Text="Email" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
-                    <Entry Placeholder="user@emailregistered.com" Margin="36,0" Keyboard="Email">
+                    <Entry x:Name="EmailEntry" Placeholder="user@emailregistered.com" Margin="36,0" Keyboard="Email">
                         <Entry.Behaviors>
                             <behavior:EmailValidationBehavior />
                         </Entry.Behaviors>
@@ -35,7 +35,7 @@
                 </StackLayout>
                 <StackLayout Spacing="2">
                     <Label Text="Password" TextColor="Gray" FontSize="14" HorizontalTextAlignment="Start" Margin="40,0"/>
-                    <Entry Placeholder="******" Margin="36,0" IsPassword="true" />
+                    <Entry x:Name="PassEntry" Placeholder="******" Margin="36,0" IsPassword="true" />
                 </StackLayout>
                 <Grid ColumnSpacing="10">
                     <Grid.RowDefinitions>

@@ -10,9 +10,15 @@
             iOS="0,16,0,16" />
     </ContentPage.Padding>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Add" Text="Add" Order="Primary" Icon="add.png" Command="{Binding AddClickedCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="PostList" SeparatorColor="{StaticResource Divider}" ItemSelected="OnPostSelected">
+            <ListView x:Name="PostList" SeparatorColor="{StaticResource Divider}"
+                ItemSelected="OnPostSelected" IsPullToRefreshEnabled="true" 
+                IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="50">

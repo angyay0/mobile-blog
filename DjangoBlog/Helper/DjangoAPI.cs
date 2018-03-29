@@ -43,7 +43,7 @@ namespace DjangoBlog.Helper
                 Method = method
             };
 
-            if (method == HttpMethod.Post || method == HttpMethod.Put || method == new HttpMethod("PATCH"))
+            if (method == HttpMethod.Post)
             {
                 request.Content = new StringContent(JsonConvert.SerializeObject(data),
                                                     Encoding.UTF8, "application/json");
@@ -63,9 +63,10 @@ namespace DjangoBlog.Helper
             return request;
         }
 
-        private void ExtractData<T>(HttpResponseMessage raw,T outParam)
+        private APIResponse<T> ExtractData<T>(HttpResponseMessage raw)
         {
             string jsonResponse;
+            APIResponse<T> outParam;
 
             switch(raw.StatusCode)
             {
@@ -73,7 +74,7 @@ namespace DjangoBlog.Helper
                     //OK Handler
                     jsonResponse = raw.Content.ReadAsStringAsync().Result;
                     Constants.AppLogger(jsonResponse);
-                    outParam = JsonConvert.DeserializeObject<T>(jsonResponse);
+                    outParam = JsonConvert.DeserializeObject<APIResponse<T>>(jsonResponse);
                     break;
                 /*case HttpStatusCode.Unauthorized:
                 case HttpStatusCode.Forbidden:
@@ -90,9 +91,11 @@ namespace DjangoBlog.Helper
                     //Nothing to do
                     jsonResponse = raw.Content.ReadAsStringAsync().Result;
                     Constants.AppLogger(jsonResponse);
-                    outParam = JsonConvert.DeserializeObject<T>(jsonResponse);
+                    outParam = JsonConvert.DeserializeObject<APIResponse<T>>(jsonResponse);
                     break;
             }
+
+            return outParam;
         }
 
         public static DjangoAPI Instance()
@@ -106,10 +109,10 @@ namespace DjangoBlog.Helper
         public async Task<APIResponse<string>> SignupRequest(SignupRequest data)
         {
             APIResponse<string> response = null;
-            var request = GenerateRequest(new Uri(SigngUpEndpoint), HttpMethod.Post, null, data);
+            var request = GenerateRequest(new Uri(Constants.BASE_URL+SigngUpEndpoint), HttpMethod.Post, null, data);
 
             var _raw = await sender.SendAsync(request);
-            ExtractData(_raw,response);
+            response = ExtractData<string>(_raw);
 
             return response;
         }
@@ -117,10 +120,10 @@ namespace DjangoBlog.Helper
         public async Task<APIResponse<AuthCredentials>> Authenticate(AuthRequest data)
         {
             APIResponse<AuthCredentials> response = null;
-            var request = GenerateRequest(new Uri(AuthEndpoint), HttpMethod.Post, null, data);
+            var request = GenerateRequest(new Uri(Constants.BASE_URL+AuthEndpoint), HttpMethod.Post, null, data);
 
             var _raw = await sender.SendAsync(request);
-            ExtractData(_raw, response);
+            response = ExtractData<AuthCredentials>(_raw);
 
             //Credentials Obtention per OAuth Imp
             credentials.Add("Key", response.data.api);
@@ -132,10 +135,10 @@ namespace DjangoBlog.Helper
         public async Task<List<Post>> FetchPosts()
         {
             APIResponse<List<Post>> response = null;
-            var request = GenerateRequest(new Uri(PostEndpoint), HttpMethod.Get, credentials, null);
+            var request = GenerateRequest(new Uri(Constants.BASE_URL+PostEndpoint), HttpMethod.Get, credentials, null);
 
             var _raw = await sender.SendAsync(request);
-            ExtractData(_raw, response);
+            response = ExtractData<List<Post>>(_raw);
 
             return response.data;
         }
@@ -143,10 +146,10 @@ namespace DjangoBlog.Helper
         public async Task<Post> FetchPostById(string key)
         {
             APIResponse<Post> response = null;
-            var request = GenerateRequest(new Uri(string.Format(PostRetrieveEndpoint,key)), HttpMethod.Get, credentials, null);
+            var request = GenerateRequest(new Uri(Constants.BASE_URL+string.Format(PostRetrieveEndpoint,key)), HttpMethod.Get, credentials, null);
 
             var _raw = await sender.SendAsync(request);
-            ExtractData(_raw, response);
+            response = ExtractData<Post>(_raw);
 
             return response.data;
         }
@@ -154,21 +157,21 @@ namespace DjangoBlog.Helper
         public async Task<APIResponse<Post>> CreateAPost(PostRequest data)
         {
             APIResponse<Post> response = null;
-            var request = GenerateRequest(new Uri(PostEndpoint), HttpMethod.Post, credentials, data);
+            var request = GenerateRequest(new Uri(Constants.BASE_URL+PostEndpoint), HttpMethod.Post, credentials, data);
 
             var _raw = await sender.SendAsync(request);
-            ExtractData(_raw, response);
+            response = ExtractData<Post>(_raw);
 
             return response;
         }
 
         public async Task<int> CreateAComment(CommentRequest data)
         {
-            APIResponse<Post> response = null;
-            var request = GenerateRequest(new Uri(CommentEndpoint), HttpMethod.Post, credentials, data);
+            APIResponse<object> response = null;
+            var request = GenerateRequest(new Uri(Constants.BASE_URL+CommentEndpoint), HttpMethod.Post, credentials, data);
 
             var _raw = await sender.SendAsync(request);
-            ExtractData(_raw, response);
+            response = ExtractData<object>(_raw);
 
             return response.code;
         }
